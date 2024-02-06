@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dropdown</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="user_assets/css/userprofile.css">
+    <link href="/user_assets/Images/FAVICON.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+
+
+</head>
+<body>
+    <%-include('../../partials/userheader') %>
+
+   <div class="container mb-4">
+        <div class="row" >
+            <%-include('../../partials/userprofileaside') %>
+
+            <!-- Wishlist-->
+            <div class="col-lg-6 pb-5" >
+                <form action="/updatepassword" method="get" onsubmit="return showConfirmDialog()">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Your Name</label>
+                        <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly value="<%= userDetails.Username  %>">
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                      </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Your Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly value="<%= userDetails.Email  %>" >
+                     </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Your Phone Number</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" readonly value="<%= userDetails.Mobilenumber  %>" >
+                       </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Your Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" readonly value="******" >
+                     </div>
+                    
+                    <button type="submit" class="btn btn-primary"> Change  Password</button>
+ 
+                  </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showConfirmDialog() {
+          Swal.fire({
+            title: 'Change Password?',
+            text: 'Are you sure you want to change your password?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, change it',
+            cancelButtonText: 'No, keep it',
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // User confirmed, submit the form
+              document.forms[0].submit(); // Submit the first form on the page
+            }
+          });
+        }
+      </script>
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+</body>
+</html>

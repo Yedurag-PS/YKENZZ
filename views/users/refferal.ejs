@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Dropdown</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <!-- Include custom CSS -->
+    <link rel="stylesheet" href="user_assets/css/userprofile.css">
+    <link href="/user_assets/Images/FAVICON.ico" rel="icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+
+
+</head>
+<body>
+    <%-include('../../partials/userheader') %>
+
+   <div class="container mb-4">
+        <div class="row" >
+            <%-include('../../partials/userprofileaside') %>
+
+            <div class="col-lg-6 pb-5" >
+ 
+                <div id="socialIcons" style="font-size: 150px;">
+                    <i class="fab fa-whatsapp" style="color: green;" onclick="shareViaWhatsApp('<%=referal%>')"></i>
+                    <i class="fas fa-envelope" style="color: lightcoral;"onclick="sendEmail('<%=referal%>')"></i>
+                    <i class="fas fa-sms" style="color: lightskyblue;"onclick="shareViaSMS('<%=referal%>')"></i>
+                </div>
+                
+
+
+
+                </div>
+      
+        </div>
+    </div>
+  
+    <script>
+         function shareViaWhatsApp(referralCode) {
+    const message = `Use my referral code "${referralCode}" to sign up on Y KENZZ and get ₹100 on your wallet!`;
+    const whatsappURL = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, "_blank");
+}
+function shareViaSMS(referralCode) {
+    const message = `Use my referral code "${referralCode}" to sign up on Y KENZZ and get ₹100 on your wallet!`;
+    const smsURL = `sms:?body=${encodeURIComponent(message)}`;
+    window.location.href = smsURL;
+}
+function sendEmail(refferalCode) {
+    // Replace with your email sharing code or URL
+    const emailSubject = "Check out this referral code!";
+    const emailBody = `Use my referral code "${refferalCode}" to sign up on Y KENZZ and get ₹100 on your wallet!`;
+    const emailLink = `mailto:?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    window.location.href = emailLink;
+}
+    </script>
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+</body>
+</html>
