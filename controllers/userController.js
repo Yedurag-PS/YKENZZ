@@ -6,8 +6,10 @@ const bannerdatas = require('../models/bannerModel')
 const bcrypt = require('bcrypt');
 const { password } = require('../config/config');
 const { default: mongoose } = require('mongoose');
-const dotenv = require('dotenv')
-dotenv.config({path:".env"})
+// const dotenv = require('dotenv')
+// dotenv.config()
+require('dotenv').config();
+
 
 
 
@@ -17,10 +19,16 @@ dotenv.config({path:".env"})
 // const client = require("twilio")(accountSid, authToken);
 
 
-const accountSid = process.env.accountSid;
-const authToken = process.env.authToken;
-const verifySid = process.env.verifySid;
-const client = require("twilio")(accountSid,authToken);
+// const accountSid  ="AC5523bdf0744cb6957bbeb41640bc9d10";
+// const authToken = process.env.authToken;
+// const verifySid = "76cd11b4862fa75641056e50c96f1e57";
+// const client = require("twilio")(accountSid,authToken);
+
+const accountSid = "AC1c4ac7475f14f876af95e4003720ef29";
+const authToken = "8790322ae884e40b8bcf22ab350a86fe";
+const verifySid = "VA74e5858454f81164087e56d3b62fc9dc";
+const client = require("twilio")(accountSid, authToken);
+
 
 // loadsignup page for user
 const loadSignup = (req,res)=>{
