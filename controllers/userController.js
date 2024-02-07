@@ -6,26 +6,12 @@ const bannerdatas = require('../models/bannerModel')
 const bcrypt = require('bcrypt');
 const { password } = require('../config/config');
 const { default: mongoose } = require('mongoose');
-// const dotenv = require('dotenv')
-// dotenv.config()
-require('dotenv').config();
+const dotenv = require('dotenv')
+dotenv.config({path:'.env'})
 
-
-
-
-// const accountSid = "AC1c4ac7475f14f876af95e4003720ef29";
-// const authToken = "26d03fafd9f9c070ad7eb623232737c6"
-// const verifySid = "VA74e5858454f81164087e56d3b62fc9dc";
-// const client = require("twilio")(accountSid, authToken);
-
-
-// const accountSid  ="AC5523bdf0744cb6957bbeb41640bc9d10";
-// const authToken = process.env.authToken;
-// const verifySid = "76cd11b4862fa75641056e50c96f1e57";
-// const client = require("twilio")(accountSid,authToken);
 
 const accountSid = "AC1c4ac7475f14f876af95e4003720ef29";
-const authToken = "8790322ae884e40b8bcf22ab350a86fe";
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 const verifySid = "VA74e5858454f81164087e56d3b62fc9dc";
 const client = require("twilio")(accountSid, authToken);
 
@@ -34,6 +20,7 @@ const client = require("twilio")(accountSid, authToken);
 const loadSignup = (req,res)=>{
      try {
         res.render('usersignup')
+     
     } catch (error) {
         console.log(error.message);
     }
