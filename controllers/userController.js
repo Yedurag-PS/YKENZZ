@@ -549,6 +549,27 @@ try {
         console.log(error.message);
     }
  }
+
+
+ //loading user to contact page
+ const loadcontactpage = async (req,res)=>{
+    try {
+        res.render('contact')
+    } catch (error) {
+        console.log(error.message);
+    }
+ }
+
+
+ //loading user to about page
+ const loadaboutpage = async (req,res)=>{
+    try {
+        res.render('about')
+    } catch (error) {
+        console.log(error.message);
+    }
+ } 
+
  
 
  
@@ -570,7 +591,7 @@ module.exports={
  loaddetailpage,
  loadconfirmemail, 
  confirmuser,
-  clickcategory,
+ clickcategory,
  searchProducts,
  sortproductsAssending,
  sortproductsDessending,
@@ -579,5 +600,7 @@ module.exports={
  forgottverifyOtp ,
  newpassword,
  ResendOtpverifyValidation,
- userWalletpage
+ userWalletpage,
+ loadcontactpage,
+ loadaboutpage
  }

@@ -1,19 +1,20 @@
 const mongoose = require('mongoose')
 const user = require('./controllers/userController')
-mongoose.connect('mongodb://127.0.0.1:27017/YKENZZ')
+// mongoose.connect('mongodb://127.0.0.1:27017/YKENZZ')
+mongoose.connect(process.env.MONGODBURL)
 .then(()=>{
     console.log("Mongo DB is connected");
 }).catch(()=>{
     console.log("Mongo DB is failed");
-})
-
-
+})     
+ 
+  
 const express = require('express')
 const app= express();
 
 const bodyParser = require('body-parser')
 const cookieparser = require('cookie-parser')
-
+ 
 const multer = require('multer')
 
 

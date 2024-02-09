@@ -81,5 +81,9 @@ user_router.post('/Returnorder',userprofileController.UserreturnOrder)
 //user wallet 
 user_router.get('/walletpage',userauth.islogin,userController.userWalletpage)
 
+// user contactpage and  about page
+user_router.get('/contact',userController.loadcontactpage)
+user_router.get('/about',userController.loadaboutpage)
+
 
 module.exports= user_router
