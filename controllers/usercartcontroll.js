@@ -9,9 +9,9 @@ const Razorpay = require('razorpay')
 const coupondatas = require('../models/couponMongo')
 
 var instance = new Razorpay({
-    key_id: process.env.key_id,
-    key_secret: process.env.key_secret
-});
+    key_id : process.env.KEY_ID,
+    key_secret:process.env.KEY_SECRET
+});   
 
 // loading cart page for user
 const loadcart = async (req,res) => {
@@ -37,8 +37,7 @@ const loadcart = async (req,res) => {
 // addto cart for user
 const addtocart = async(req,res)=>{
     try {
-      console.log("hiii");
-      const id = new mongoose.Types.ObjectId(req.query.id);
+       const id = new mongoose.Types.ObjectId(req.query.id);
       const user = req.session.user
       const userid = new mongoose.Types.ObjectId(user._id)
 
@@ -95,8 +94,7 @@ const addtocart = async(req,res)=>{
   }, 1500);
 
 
-    
-
+  
 
       } catch (error) {
         console.log(error.message);         
@@ -116,8 +114,7 @@ const changeQuantity = async (req, res) => {
         const product = await productdatas.findOne({_id:product_id})
          const quantity = product.prdctstock
         const user = req.session.user; // Assuming you have the user in the session
-      // console.log(count1,"yyyyyyyyyyyyyyyyyyyyyyyyyy")
-       let data = await cartdatas.updateOne(
+        let data = await cartdatas.updateOne(
             {  
               user_id:user._id,
               'cart_items.product_id': product_id
@@ -210,8 +207,7 @@ const applyCoupon = async (req, res) => {
 
       const couponCode = req.body.couponcode;
       const coupon = await coupondatas.find({ couponCode: couponCode });
-      console.log(coupon,'////////////////////////////');
-      let total = 0; // Initialize total here
+       let total = 0; // Initialize total here
 
       for (let i = 0; i < cartItem[0].cart_items.length; i++) {
           total += cartItem[0].cart_items[i].product_price * cartItem[0].cart_items[i].quantity;
@@ -246,8 +242,7 @@ const placeorder = async (req,res)=>{
     const address = address_id
     const userr = await addressdatas.findOne({user_id:user_id})
     
-   console.log(product.cart_items[0].product_id,'llllllllllllllllllllllllllllllll');
- 
+  
 
      const useraddress = await addressdatas.aggregate([
         {
@@ -273,6 +268,7 @@ const placeorder = async (req,res)=>{
           }
         }
       ]);
+      console.log('entered');
 
 
  
@@ -292,10 +288,11 @@ const placeorder = async (req,res)=>{
       await Order.save()
       if(Order.payment_type == 'Razorpay'){
         var options = {
-            amount: req.body.total*100,  // amount in the smallest currency unit
+            amount: req.body.total,  // amount in the smallest currency unit
             currency: "INR",
             receipt: ""+Order._id
           };
+          
           instance.orders.create(options, function(err, order) {
             if(err){
                 console.log("Error while creating order : ",err)
@@ -305,8 +302,7 @@ const placeorder = async (req,res)=>{
             }
         });
       }else{
-        console.log("Cod payment resoponseeee")
-        res.json({cod:true})
+         res.json({cod:true})
       }
       console.log("Orders==>" , Order)
       for(let i=0 ;i< product.cart_items.length; i++){

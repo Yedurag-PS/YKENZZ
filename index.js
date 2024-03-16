@@ -1,12 +1,14 @@
 const mongoose = require('mongoose')
 const user = require('./controllers/userController')
-// mongoose.connect('mongodb://127.0.0.1:27017/YKENZZ')
+//mongoose.connect('mongodb://127.0.0.1:27017/YKENZZ')
+console.log(process.env.MONGODBURL)
 mongoose.connect(process.env.MONGODBURL)
+
 .then(()=>{
     console.log("Mongo DB is connected");
-}).catch(()=>{
-    console.log("Mongo DB is failed");
-})     
+}).catch((err)=>{
+    console.log("Mongo DB is failed" , err);
+})         
  
   
 const express = require('express')
